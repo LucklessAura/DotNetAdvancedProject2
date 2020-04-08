@@ -4,7 +4,7 @@ using Project1;
 
 namespace WCF
 {
-    public class ClassesWCF : interfaceClasses
+    public class ClassesWCF : IClasses
     {
         public void AddNewFile(Dictionary<string, string> newFile)
         {

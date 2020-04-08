@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using Classes;
 using Project1;
 
 namespace WCF
@@ -46,5 +41,12 @@ namespace WCF
         void SendEmail(string to, string from, string subject, string body, List<int> filesIds, string email, string emailPassword);
 
     }
+
+    [ServiceContract]
+    interface IClasses : interfaceClasses
+    {
+
+    }
+
 
 }

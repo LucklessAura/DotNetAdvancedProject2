@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using System.Text;
-using System.Threading.Tasks;
 using WCF;
 
 namespace Host
@@ -15,17 +11,16 @@ namespace Host
         {
 
 
-            Console.Write("Starting Server \n");
-            ServiceHost host = new ServiceHost(typeof(ClassesWCF), new Uri("http://localhost:8000/PC"));
-
+            Console.WriteLine("Lansare server WCF...");
+            ServiceHost host = new ServiceHost(typeof(ClassesWCF), new Uri("http://localhost:8000/IM"));
             foreach (ServiceEndpoint se in host.Description.Endpoints)
             {
-                Console.WriteLine("adress : {0}\t binding : {1}\t contract : {2}", se.Address, se.Binding.Name, se.Contract.Name);
-            }
+                Console.WriteLine("A (adress): {0} \nB(binding: {1}\nC (Contract): {2}\n", se.Address, se.Binding.Name, se.Contract.Name);
 
+            }
             host.Open();
-            Console.WriteLine("Server Started");
-            Console.WriteLine("Press enter to close");
+            Console.WriteLine("Server in executie. Se asteapta conexiuni...");
+            Console.WriteLine("Apasati Enter pentru a opri serverul!");
             Console.ReadKey();
             host.Close();
         }
