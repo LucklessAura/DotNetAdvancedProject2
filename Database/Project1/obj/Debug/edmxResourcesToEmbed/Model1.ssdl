@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="Files" EntityType="Model1.Store.Files" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AditionalFileProprieties" EntityType="Model1.Store.AditionalFileProprieties" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FileAditionalFilePropriety" Association="Model1.Store.FileAditionalFilePropriety">
+      <End Role="File" EntitySet="Files" />
+      <End Role="AditionalFilePropriety" EntitySet="AditionalFileProprieties" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Files">
+    <Key>
+      <PropertyRef Name="FileId" />
+    </Key>
+    <Property Name="FileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FilePath" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="DateCreated" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Ocasion" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="People" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Place" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AditionalFileProprieties">
+    <Key>
+      <PropertyRef Name="AditionalFileProprietyId" />
+    </Key>
+    <Property Name="AditionalFileProprietyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProprietyName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ProprietyValue" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ForeignFileId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FileAditionalFilePropriety">
+    <End Role="File" Type="Model1.Store.Files" Multiplicity="1" />
+    <End Role="AditionalFilePropriety" Type="Model1.Store.AditionalFileProprieties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="File">
+        <PropertyRef Name="FileId" />
+      </Principal>
+      <Dependent Role="AditionalFilePropriety">
+        <PropertyRef Name="ForeignFileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

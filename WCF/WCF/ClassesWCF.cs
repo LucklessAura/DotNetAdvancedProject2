@@ -4,7 +4,7 @@ using Project1;
 
 namespace WCF
 {
-    public class ClassesWCF : IClasses
+    public class ClassesWCF : interfaceClasses
     {
         public void AddNewFile(Dictionary<string, string> newFile)
         {
@@ -95,11 +95,18 @@ namespace WCF
 
         public (List<File>, List<File>) SearchFiles(Dictionary<string, string> proprieties)
         {
-            (List<File>, List<File>) result = (new List<File>(), new List<File>());
-            using (var service = new Services())
+            var service = new Services();
+
+            var result = service.SearchFiles(proprieties);
+            using(System.IO.StreamWriter writer = new System.IO.StreamWriter("D:\\dotnet\\advanced\\Proiect2\\WCF\\results.txt"))
             {
-                result = service.SearchFiles(proprieties);
+                foreach (var item in result.Item1)
+                {
+                    writer.Write(item.FileId + " \n" + item.FileName + "\n~~~~~~~~~~~~~~~\n");
+                }
             }
+            service.Dispose();
+
             return result;
         }
 
