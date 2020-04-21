@@ -1,6 +1,0 @@
-Parametrers:
-FileName     
-DateCreated     
-Ocasion     
-People     
-Place     
